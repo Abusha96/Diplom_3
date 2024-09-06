@@ -1,4 +1,4 @@
-from locators.main_functionality import counter, create_order_button
+from locators.main_functionality import COUNTER, CREATE_ORDER_BUTTON
 from pages.main_functionality_page import MainFunctionalityPage
 from pages.personal_account_page import PersonalAccountPage
 from urls import URLS
@@ -36,12 +36,12 @@ class TestMainFunctionality:
         counter_check = MainFunctionalityPage(driver, wait)
         counter_check.open_main_page()
         counter_check.add_ingredient_to_order()
-        assert '2' in counter_check.find_element(counter).text
+        assert '2' in counter_check.find_element(COUNTER).text
 
     def test_authorized_user_create_order(self, driver, wait): # ПАДАЕТ :(
         personal_account = PersonalAccountPage(driver, wait)
         create_order = MainFunctionalityPage(driver, wait)
         personal_account.login()
         personal_account.wait_loading(personal_account.get_url())
-        create_order.click_element(create_order_button)
+        create_order.click_element(CREATE_ORDER_BUTTON)
         assert "идентификатор заказа" in create_order.check_order_successfully_created().text

@@ -19,7 +19,7 @@ class TestMainFunctionality:
         redirect_to_order_feed.click_to_order_feed()
         assert redirect_to_order_feed.get_url() == URLS.URL_FEED
 
-    def test_modal_window_about_ingredient(self, driver, wait): # ПАДАЕТ :(
+    def test_modal_window_about_ingredient(self, driver, wait): # РАБОТАЕТ!
         modal_window = MainFunctionalityPage(driver, wait)
         modal_window.open_main_page()
         modal_window.click_to_ingredient()
@@ -38,7 +38,7 @@ class TestMainFunctionality:
         counter_check.add_ingredient_to_order()
         assert '2' in counter_check.find_element(COUNTER).text
 
-    def test_authorized_user_create_order(self, driver, wait): # ПАДАЕТ :(
+    def test_authorized_user_create_order(self, driver, wait): # РАБОТАЕТ!
         personal_account = PersonalAccountPage(driver, wait)
         create_order = MainFunctionalityPage(driver, wait)
         personal_account.login()

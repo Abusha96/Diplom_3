@@ -17,9 +17,11 @@ class TestPersonalAccount:
         redirect_to_order_history_section.click_on_order_history()
         assert redirect_to_order_history_section.get_url() == URLS.URL_ORDER_HISTORY
 
-    def test_logout(self, driver, wait): #ВАЛИТСЯ видимо по той же причине
+    def test_logout(self, driver, wait): # ВАЛИТСЯ один браузер (Mozilla)
         logout = PersonalAccountPage(driver, wait)
         logout.login()
         logout.click_on_personal_account_button()
         logout.click_on_logout_button()
+        logout.get_url()
+        logout.url_to_be(URLS.URL_LOGIN)
         assert logout.get_url() == URLS.URL_LOGIN

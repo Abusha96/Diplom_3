@@ -23,10 +23,11 @@ class PersonalAccountPage(BasePage):
         self.force_click(LOGIN_PASSWORD_INPUT)
         self.input(LOGIN_PASSWORD_INPUT, UserTestData.PASSWORD)
         self.force_click(LOGIN_BUTTON)
+        self.wait_loading(self.get_url())
 
     @allure.step("Тап на кнопку «Личный кабинет»")
     def click_on_personal_account_button(self):
-        self.click_element(PERSONAL_ACCOUNT)
+        self.open_url(URLS.URL_PROFILE)
 
     @allure.step("Тап на «История заказов»")
     def click_on_order_history(self):
@@ -34,4 +35,4 @@ class PersonalAccountPage(BasePage):
 
     @allure.step("Тап на «Выход»")
     def click_on_logout_button(self):
-        self.click_element(LOGOUT_BUTTON)
+        self.wait_until_secret_window_close(LOGOUT_BUTTON)

@@ -1,5 +1,5 @@
-
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC, expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from seletools.actions import drag_and_drop
@@ -15,7 +15,7 @@ class BasePage:
         self.driver.get(url)
 
     def click_element(self, locator):
-        WebDriverWait(self.driver, 5).until(expected_conditions.element_to_be_clickable(locator)).click()
+        self.wait.until(expected_conditions.element_to_be_clickable(locator)).click()
 
     def force_click(self, locator):
         self.wait.until(EC.presence_of_element_located(locator))
@@ -41,9 +41,6 @@ class BasePage:
     def wait_loading(self, url):
         self.wait.until(lambda driver: url != self.get_url())
 
-    def check_text(self, locator):
-        return self.wait.until(EC.visibility_of_element_located(locator)).text
-
     def drag_drop(self, locator_1, locator_2):
         locator_1 = self.check_element_clickable(locator_1)
         locator_2 = self.check_element_clickable(locator_2)
@@ -60,3 +57,10 @@ class BasePage:
 
     def find_text_element(self, locator):
         return WebDriverWait(self.driver, 5).until(expected_conditions.visibility_of_element_located(locator)).text
+
+    def wait_until_secret_window_close(self, locator):
+        self.wait.until(EC.invisibility_of_element_located((By.XPATH, "//section[@class='Modal_modal__P3_V5']//div"
+                                                                          "[@class='Modal_modal_overlay__x2ZCr']")))
+        self.wait.until(EC.invisibility_of_element_located((By.XPATH, "//div[@class='Modal_modal__P3_V5']//div"
+                                                                          "[@class='Modal_modal_overlay__x2ZCr']")))
+        self.click_element(locator)

@@ -8,19 +8,13 @@ def driver(request):
     if request.param == 'firefox':
         options = webdriver.FirefoxOptions()
         options.add_argument('-headless')
-        firefox_driver = webdriver.Firefox(options=options)
-        firefox_driver.set_window_size(1920, 1080)
-        yield firefox_driver
-        firefox_driver.quit()
-    elif request.param == 'chrome':
+        driver = webdriver.Firefox(options=options)
+    else:
         options = webdriver.ChromeOptions()
         options.add_argument('headless')
-        chrome_driver = webdriver.Chrome(options=options)
-        yield chrome_driver
-        chrome_driver.quit()
-
-
-@pytest.fixture()
-def wait(driver):
+        driver = webdriver.Chrome(options=options)
     wait = WebDriverWait(driver, 15)
-    yield wait
+    request.cls.driver = driver
+    request.cls.wait = wait
+    yield driver
+    driver.quit()

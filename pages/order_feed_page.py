@@ -1,6 +1,6 @@
 import allure
 
-from locators.order_feed_section import ORDER_FEED, MODAL_WINDOW, ORDER_1, ORDER_HISTORY_ITEM_ID, TOTAL_ORDER_COUNT, \
+from locators.order_feed_section import MODAL_WINDOW, ORDER_1, ORDER_HISTORY_ITEM_ID, TOTAL_ORDER_COUNT, \
     DAILY_ORDER_COUNT, IN_PROGRESS_ORDER_COUNT
 from pages.base_page import BasePage
 from urls import URLS

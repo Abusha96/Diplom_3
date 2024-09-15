@@ -1,4 +1,4 @@
-import allure
+
 from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as EC, expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait

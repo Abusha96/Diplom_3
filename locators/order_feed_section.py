@@ -1,6 +1,5 @@
 from selenium.webdriver.common.by import By
 
-ORDER_FEED = (By.XPATH, '//*[@id="root"]/div/header/nav/ul/li[2]/a')
 ORDER_1 = (By.XPATH, '//*[@id="root"]/div/main/div/div/ul/li[1]/a')
 MODAL_WINDOW = (By.XPATH, '//*[@id="root"]/div/section[2]/div[1]/div')
 TOTAL_ORDER_COUNT = (By.XPATH, "//p[text()='Выполнено за все время:']/following-sibling::p")

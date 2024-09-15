@@ -1,14 +1,18 @@
+import allure
+
 from pages.password_recovery_page import PasswordRecoveryPage
 from urls import URLS
 
 
 class TestPasswordRecovery:
 
+    @allure.title('Переход на страницу восстановления пароля по кнопке «Восстановить пароль»')
     def test_redirect_to_recovery_password_page(self, driver, wait): # Работает!
         recovery_password_page = PasswordRecoveryPage(driver, wait)
         recovery_password_page.open_recovery_password_page()
         assert recovery_password_page.get_url() == URLS.URL_FORGOT_PASSWORD
 
+    @allure.title('Ввод почты и клик по кнопке «Восстановить»')
     def test_input_email_and_button_is_clickable(self, driver, wait): # Работает!
         recovery_password_page = PasswordRecoveryPage(driver, wait)
         recovery_password_page.open_recovery_password_page()
@@ -16,6 +20,7 @@ class TestPasswordRecovery:
         recovery_password_page.wait_loading(recovery_password_page.get_url())
         assert recovery_password_page.get_url() == URLS.URL_RESET_PASSWORD
 
+    @allure.title('Активация поля «Пароль» при клике на кнопку показать/скрыть пароль')
     def test_activate_field_after_click_on_eye(self, driver, wait): # Работает!
         recovery_password_page = PasswordRecoveryPage(driver, wait)
         recovery_password_page.open_recovery_password_page()

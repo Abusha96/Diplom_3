@@ -6,4 +6,4 @@ class URLS:
     URL_RESET_PASSWORD = f'{BASE_URL}reset-password'
     URL_ORDER_HISTORY = f'{BASE_URL}account/order-history'
     URL_FEED = f'{BASE_URL}feed'
-    URL_PROFILE = f'{BASE_URL}profile'
+    URL_PROFILE = f'{BASE_URL}account/profile'

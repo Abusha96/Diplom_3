@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 
-LOGIN_EMAIL_INPUT = (By.XPATH, ".//input[@name = 'name']")
+LOGIN_EMAIL_INPUT = (By.XPATH, "//*[@id='root']/div/main/div/form/fieldset[1]/div/div/input")
 LOGIN_PASSWORD_INPUT = (By.XPATH, '//*[@id="root"]/div/main/div/form/fieldset[2]/div/div/input')
 LOGIN_BUTTON = (By.XPATH, '//*[@id="root"]/div/main/div/form/button')
 LOGIN_SHOW_PASSWORD = (By.XPATH, './/div[@class="input__icon input__icon-action"]')

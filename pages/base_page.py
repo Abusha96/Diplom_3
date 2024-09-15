@@ -1,3 +1,4 @@
+import allure
 from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as EC, expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
@@ -16,10 +17,20 @@ class BasePage:
     def click_element(self, locator):
         WebDriverWait(self.driver, 5).until(expected_conditions.element_to_be_clickable(locator)).click()
 
+    def force_click(self, locator):
+        self.wait.until(EC.presence_of_element_located(locator))
+        element = self.driver.find_element(*locator)
+        self.driver.execute_script("arguments[0].click();", element)
+
     def find_element(self, locator):
         self.wait.until(EC.visibility_of_element_located(locator))
         element = self.driver.find_element(*locator)
         return element
+
+    def find_elements(self, locator):
+        self.wait.until(EC.visibility_of_element_located(locator))
+        elements = self.driver.find_elements(*locator)
+        return elements
 
     def input(self, locator, keys):
         self.wait.until(EC.visibility_of_element_located(locator)).send_keys(keys)
@@ -41,5 +52,11 @@ class BasePage:
     def check_element_clickable(self, locator):
         return self.wait.until(EC.element_to_be_clickable(locator))
 
+    def check_element_visibility(self, locator):
+        self.wait.until(EC.visibility_of_element_located(locator))
+
     def url_to_be(self, url, time=30):
         return WebDriverWait(self.driver, time).until(expected_conditions.url_to_be(url))
+
+    def find_text_element(self, locator):
+        return WebDriverWait(self.driver, 5).until(expected_conditions.visibility_of_element_located(locator)).text

@@ -22,5 +22,5 @@ def driver(request):
 
 @pytest.fixture()
 def wait(driver):
-    wait = WebDriverWait(driver, 10)
+    wait = WebDriverWait(driver, 15)
     yield wait
